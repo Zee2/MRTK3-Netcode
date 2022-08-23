@@ -12,8 +12,7 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            console.log("Payload is " + JSON.stringify(context.payload, null, 2))
-            if (context.payload.pull_request.base_ref.includes("main"))
+            if (context.payload.pull_request.base.ref == 'main')
             {
               github.rest.issues.addLabels({
                 issue_number: context.issue.number,
