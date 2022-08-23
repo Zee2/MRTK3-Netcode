@@ -10,7 +10,7 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            if (context.payload.issue.title.includes("foobar"))
+            if (context.payload.issue.title.toLowerCase().includes("foobar"))
             {
               github.rest.issues.addLabels({
                 issue_number: context.issue.number,
@@ -19,7 +19,7 @@ jobs:
                 labels: ['Found in title']
               })
             }
-            if (context.payload.issue.body.includes("barbaz"))
+            if (context.payload.issue.body.toLowerCase().includes("barbaz"))
             {
               github.rest.issues.addLabels({
                 issue_number: context.issue.number,
